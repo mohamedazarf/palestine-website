@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body>
     <header >
         <h1 class="text-3xl font-bold underline text-center">for palestinos 1</h1>
+        
+        <div id="fleche" class="fleche h-20 w-20 bg-black rounded-full flex justify-center items-center"><i class="fas fa-arrow-down "></i></div>
         <div class="arrow-down" id="show"></div>
         <div class="flex hidden" id="navigate">
             <h3 class="flex-grow bg-blue-500 text-white text-center py-2 border-7 border-r border-l border-white ">title1</h3>
@@ -17,7 +20,7 @@
             <h3 class="flex-grow bg-blue-500 text-white text-center py-2 border-7 border-r border-l border-white">title4</h3>
         </div>
     </header>
-    <div class="h-300 relative" style="background-color: transparent; height: 200px">
+    <div class="h-300 relative" style="background-color: transparent; height: 200px;">
         <div onclick="toggleDropdown()" class="moreInfo z-50 flex items-center justify-center text-3xl font-bold text-center  bg-white rounded-full h-10 w-10 absolute top-0 left-4">+</div>        <!-- <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2bf3899e-48a5-412e-95c6-fe219464eb57/d1tf8um-7b09252c-3e17-4fb5-b1ce-42df4746bd34.jpg/v1/fill/w_900,h_598,q_75,strp/palestine_grungy_flag_by_think0_d1tf8um-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTk4IiwicGF0aCI6IlwvZlwvMmJmMzg5OWUtNDhhNS00MTJlLTk1YzYtZmUyMTk0NjRlYjU3XC9kMXRmOHVtLTdiMDkyNTJjLTNlMTctNGZiNS1iMWNlLTQyZGY0NzQ2YmQzNC5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.aKffWoBBoA82u3XGhq1CRo8-s2He0DRiXyxiJnskFNY" alt="" width="100%" height=""100%> -->
         <div id="dropdown" class=" absolute z-50 hidden top-10 left-2 bg-white rounded shadow">
             <ul class="py-2">
@@ -34,8 +37,25 @@
             <div class="arrowRight" onclick="change('-')"></div>
         </div>
  </div>
+ <section class="  section  z-500 relative top-30 grid grid-cols-3 gap-4 grid-rows-3 bg-blue-500 p-5">
+  <div class="p-4 bg-gray-200">Item 1</div>
+  <div class="p-4 bg-gray-200">Item 2</div>
+  <div class="p-4 bg-gray-200">Item 3</div>
+  <div class="p-4 bg-gray-200">Item 1</div>
+  <div class="p-4 bg-gray-200">Item 2</div>
+  <div class="p-4 bg-gray-200">Item 3</div>
+  <div class="p-4 bg-gray-200">Item 1</div>
+  <div class="p-4 bg-gray-200">Item 2</div>
+  <div class="p-4 bg-gray-200">Item 3</div>
+ </section>
 </body>
 <style>
+.section{
+  height:1000px;
+}
+.fleche{position: fixed; bottom:50px; z-index: 100; right:50px;         transition: transform 0.6s ease-in-out;
+}
+.fa-arrow-down{color:white; transform: scale(2); }
     .arrow-down {
         width: 50px;
         height: 30px;
@@ -92,6 +112,9 @@ display: none;
     color: red;
   animation: scaleAnimation 0.3s ease-in-out; /* Add an animation property for scaling */
 }
+.rotate {
+    transform: rotate(180deg);
+  }
 </style>
 <script>
     let arrow=document.getElementById("show");
@@ -138,7 +161,27 @@ function toggleDropdown() {
     const dropdown = document.getElementById("dropdown");
     dropdown.classList.toggle("hidden");
   }
+arrow=document.getElementById("fleche");
+let rotated=false;
+window.addEventListener('scroll', function() {
+    var scrollPosition = window.scrollY;
+    if (scrollPosition >= 300) {
+      fleche.classList.add('rotate');
+rotated=true;
+    } else {
+      fleche.classList.remove('rotate'); rotated=false;
+    }
+  });
 
 
+function scrollToTop() {
+  if(rotated){
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  }else{
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); 
+  }
+}
+
+fleche.onclick=scrollToTop;
 </script>
 </html>
